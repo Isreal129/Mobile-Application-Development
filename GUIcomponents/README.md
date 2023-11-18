@@ -1,8 +1,7 @@
-# MAD-EXP-1-To-Create-a-HelloWorld-Activity-using-all-Lifecycles-Methods-to-Display-Messages
-
+# MAD-EXP-2-To-develop-an-application-that-uses-GUI-Components-with-Fonts-and-Colors
 ## AIM:
 
-To create a HelloWorld Activity using all lifecycles methods to display messages using Android Studio.
+To create an application that uses GUI Components with Fonts and Colors using Android Studio.
 
 ## EQUIPMENTS REQUIRED:
 
@@ -27,15 +26,15 @@ Step 7: Save and run the application.
 ## PROGRAM:
 ```
 /*
-Program to print the text “Hello World”.
+Program to print the text “GUIcomponent”.
 Developed by: Isreal Moses B
-Registration Number : 212221040060
+Registration Number: 212221040060
 */
 ```
 activity_main.xml :
 ```
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -43,88 +42,121 @@ activity_main.xml :
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_margin="30dp"
+        android:layout_marginTop="296dp"
+        android:gravity="center"
+        android:text="Hello Siddarthan!"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="48dp"
+        android:gravity="center"
+        android:text="Change font size"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="Change color"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="MissingConstraints" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 ```
 MainActivity.java :
 ```
-package com.example.exp1;
+package com.example.labexp2;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
+    int ch=1;
+    float font=30;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toast.makeText(this, "onCreate Called", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onRestart(){
-        Toast.makeText(this, "onRestart Called", Toast.LENGTH_SHORT).show();
-        super.onRestart();
-    }
-    @Override
-    protected void onStart(){
-        Toast.makeText(this, "onStart Called", Toast.LENGTH_SHORT).show();
-
-        super.onStart();
-    }
-    @Override
-    protected void onResume(){
-        Toast.makeText(this, "onResume Called", Toast.LENGTH_SHORT).show();
-
-        super.onResume();
-    }
-    @Override
-    protected void onPause(){
-        Toast.makeText(this, "onPause Called", Toast.LENGTH_SHORT).show();
-
-        super.onPause();
-    }
-    @Override
-    protected void onStop(){
-        Toast.makeText(this, "onStop Called", Toast.LENGTH_SHORT).show();
-
-        super.onStop();
-    }
-    @Override
-    protected void onDestroy(){
-        Toast.makeText(this, "onDestroy Called", Toast.LENGTH_SHORT).show();
-
-        super.onDestroy();
+        final TextView t= (TextView) findViewById(R.id.textView);
+        Button b1= (Button) findViewById(R.id.button1);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t.setTextSize(font);
+                font = font + 5;
+                if (font == 50)
+                    font = 30;
+            }
+        });
+        Button b2= (Button) findViewById(R.id.button2);
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (ch) {
+                    case 1:
+                        t.setTextColor(Color.RED);
+                        break;
+                    case 2:
+                        t.setTextColor(Color.GREEN);
+                        break;
+                    case 3:
+                        t.setTextColor(Color.BLUE);
+                        break;
+                    case 4:
+                        t.setTextColor(Color.CYAN);
+                        break;
+                    case 5:
+                        t.setTextColor(Color.YELLOW);
+                        break;
+                    case 6:
+                        t.setTextColor(Color.MAGENTA);
+                        break;
+                }
+                ch++;
+                if (ch == 7)
+                    ch = 1;
+            }
+        });
     }
 }
 ```
-## OUTPUT:
-
-![image](https://github.com/Siddarthan999/MAD-EXP-1-To-Create-a-HelloWorld-Activity-using-all-Lifecycles-Methods-to-Display-Messages/assets/91734840/9a1f954e-a9c8-4cbf-bf73-6edbb97df378)
-
-![image](https://github.com/Siddarthan999/MAD-EXP-1-To-Create-a-HelloWorld-Activity-using-all-Lifecycles-Methods-to-Display-Messages/assets/91734840/a2ef3eb2-8b95-4377-be72-e80599e17685)
-
-![image](https://github.com/Siddarthan999/MAD-EXP-1-To-Create-a-HelloWorld-Activity-using-all-Lifecycles-Methods-to-Display-Messages/assets/91734840/abe0f11a-98de-4e73-8fa9-67074ed1aa8e)
-
-![image](https://github.com/Siddarthan999/MAD-EXP-1-To-Create-a-HelloWorld-Activity-using-all-Lifecycles-Methods-to-Display-Messages/assets/91734840/dabf2256-c354-4173-839e-25a6f448f5b2)
-
-![image](https://github.com/Siddarthan999/MAD-EXP-1-To-Create-a-HelloWorld-Activity-using-all-Lifecycles-Methods-to-Display-Messages/assets/91734840/9d96a188-d996-40e2-b21d-7dfd5ffc26cd)
-
-![image](https://github.com/Siddarthan999/MAD-EXP-1-To-Create-a-HelloWorld-Activity-using-all-Lifecycles-Methods-to-Display-Messages/assets/91734840/6f3771ca-4c08-485a-973c-bd0cc782ad32)
-
-## RESULT:
-Thus, a Simple Android Application create a HelloWorld Activity using all lifecycles methods to display messages using Android Studio is developed and executed successfully.
+## OUTPUT
+![image](https://github.com/Siddarthan999/MAD-EXP-2-To-develop-an-application-that-uses-GUI-Components-with-Fonts-and-Colors/assets/91734840/6b3062a0-7f0c-4590-8e7c-1c5b168cdc3c)
+![image](https://github.com/Siddarthan999/MAD-EXP-2-To-develop-an-application-that-uses-GUI-Components-with-Fonts-and-Colors/assets/91734840/d58fca9f-43f9-4731-9303-a146fdd66f5a)
 
 
 ## RESULT
-Thus a Simple Android Application that uses GUI Components with Fonts and Colors using Android Studio is developed and executed successfully.
+Thus, a Simple Android Application that uses GUI Components with Fonts and Colors using Android Studio is developed and executed successfully.
 
 
